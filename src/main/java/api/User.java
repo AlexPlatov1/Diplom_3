@@ -1,6 +1,5 @@
 package api;
-
-import org.apache.commons.lang3.RandomStringUtils;
+import com.github.javafaker.Faker;
 
 public class User {
     private String email;
@@ -41,9 +40,10 @@ public class User {
     }
 
     public static User randomUser() {
-        final String email = RandomStringUtils.randomAlphanumeric(10) + "@mail.ru";
-        final String password = RandomStringUtils.randomAlphanumeric(10);
-        final String name = RandomStringUtils.randomAlphanumeric(10);
+        Faker faker = new Faker();
+        final String email = faker.internet().emailAddress();
+        final String password = faker.internet().password();
+        final String name = faker.name().fullName();
         return new User(email, password, name);
     }
 
